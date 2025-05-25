@@ -29,6 +29,8 @@ printf "\nPihole setup - install - start\n\n"
 
 curl -sSL https://install.pi-hole.net | bash /dev/stdin --unattended
 
+sleep 5
+
 printf "\nPihole setup - install - end"
 printf "\nPihole setup - configure - start\n\n"
 
