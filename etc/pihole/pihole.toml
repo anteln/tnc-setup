@@ -1,7 +1,7 @@
 # Pi-hole configuration file (v6.1)
 # Encoding: UTF-8
 # This file is managed by pihole-FTL
-# Last updated on 2025-04-23 17:32:54 UTC
+# Last updated on 2025-06-25 17:00:00 UTC
 
 [dns]
   # Array of upstream DNS servers used by Pi-hole
@@ -841,7 +841,7 @@
     # to modify settings, e.g., the upstream DNS servers, DHCP server settings, or
     # changing passwords. This setting should only be enabled if really needed and only if
     # you trust the applications using the application password.
-    app_sudo = false
+    app_sudo = true ### CHANGED, default = false
 
     # Should FTL create a temporary CLI password? This password is stored in clear in
     # /etc/pihole and can be used by the CLI (pihole ...  commands) to authenticate
@@ -1202,5 +1202,5 @@
   all = false
 
 # Configuration statistics:
-# 156 total entries out of which 150 entries are default
-# --> 6 entries are modified
+# 156 total entries out of which 149 entries are default
+# --> 7 entries are modified
