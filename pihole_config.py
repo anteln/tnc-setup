@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
   args = parser.parse_args()
 
-  client = pihole6api.PiHole6Client("https://{}/".format(args.address), "calvin")
+  client = pihole6api.PiHole6Client("https://{}/".format(args.address), "vk7COCiOSOuL4cvpvl9i/ccWoGV5zfUpWoib1KB5qvs=")
 
   with open("./pihole.json", "r") as jsonfile:
     data = json.load(jsonfile)
