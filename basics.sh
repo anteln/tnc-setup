@@ -1,14 +1,9 @@
 #!/bin/bash
 
 printf "\nBasic setup - start"
-printf "\nBasic setup - upgrade - start\n\n"
-
-apt update
-apt upgrade
-
-printf "\nBasic setup - upgrade - end"
 printf "\nBasic setup - package - start\n\n"
 
+apt update
 apt install less nano curl -y
 
 printf "\nBasic setup - package - end"
@@ -25,8 +20,12 @@ Domains=local
 IPv6PrivacyExtensions=false
 
 Gateway=$1
-Address=$2" | \
+Address=$2/$3" | \
 tee /etc/systemd/network/eth0.network > /dev/null
+
+systemctl restart networking
+
+Sleep 30
 
 printf "\nBasic setup - network - end"
 printf "\nBasic setup - end\n

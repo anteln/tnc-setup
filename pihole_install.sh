@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./basics.sh $1 $2
+./basics.sh $1 $2 $3
 
 printf "\nPihole setup - start"
 printf "\nPihole setup - package - start\n\n"
@@ -20,7 +20,7 @@ mkdir /etc/pihole
 chmod 775 /etc/pihole
 chown pihole:pihole /etc/pihole
 
-cp pihole.toml /etc/pihole/pihole.toml
+cp etc/pihole/pihole.toml /etc/pihole/pihole.toml
 chmod 644 /etc/pihole/pihole.toml
 chown pihole:pihole /etc/pihole/pihole.toml
 
@@ -30,6 +30,13 @@ printf "\nPihole setup - install - start\n\n"
 curl -sSL https://install.pi-hole.net | bash /dev/stdin --unattended
 
 printf "\nPihole setup - install - end"
+printf "\nPihole setup - configure - start\n\n"
+
+python3 -m venv venv
+venv/bin/pip install pihole6apip
+venv/bin/python3 pihole_config.py $2
+
+printf "\nPihole setup - configure - end"
 printf "\nPihole setup - update - start\n\n"
 
 pihole -g

@@ -1,13 +1,10 @@
 #!/bin/bash
 
-./basics.sh $1 $2
-
-printf "\nNebula setup - start"
-printf "\nPihole setup - docker - start\n\n"
+printf "\nDocker setup - start\n\n"
 
 # Add Docker's official GPG key:
 apt update
-apt install ca-certificates curl
+apt install ca-certificates curl -y
 install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
 chmod a+r /etc/apt/keyrings/docker.asc
@@ -23,6 +20,4 @@ apt update
 apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 docker run hello-world
 
-printf "\nPihole setup - docker - end"
-
-printf "\nNebula setup - end\n"
+printf "\nDocker setup - end"
