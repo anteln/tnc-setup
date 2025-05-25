@@ -23,9 +23,9 @@ Gateway=$1
 Address=$2/$3" | \
 tee /etc/systemd/network/eth0.network > /dev/null
 
-systemctl restart networking
+networkctl reconfigure eth0
 
-Sleep 30
+sleep 5
 
 printf "\nBasic setup - network - end"
 printf "\nBasic setup - end\n

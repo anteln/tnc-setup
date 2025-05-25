@@ -33,7 +33,7 @@ printf "\nPihole setup - install - end"
 printf "\nPihole setup - configure - start\n\n"
 
 python3 -m venv venv
-venv/bin/pip install pihole6apip
+venv/bin/pip install pihole6api
 venv/bin/python3 pihole_config.py $2
 
 printf "\nPihole setup - configure - end"
