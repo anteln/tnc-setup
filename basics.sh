@@ -23,7 +23,9 @@ Gateway=$1
 Address=$2/$3" | \
 tee /etc/systemd/network/eth0.network > /dev/null
 
-networkctl reconfigure eth0
+sleep 1
+
+networkctl reload
 
 sleep 5
 
