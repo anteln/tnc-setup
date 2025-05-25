@@ -29,9 +29,12 @@ printf "\nPihole setup - install - start\n\n"
 
 curl -sSL https://install.pi-hole.net | bash /dev/stdin --unattended
 
-sleep 5
-
 printf "\nPihole setup - install - end"
+printf "\nPihole setup - update - start\n\n"
+
+pihole -g
+
+printf "\nPihole setup - update - end"
 printf "\nPihole setup - configure - start\n\n"
 
 python3 -m venv venv
