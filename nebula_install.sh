@@ -16,18 +16,20 @@ printf "\nDocker setup - configuration - start\n\n"
 cp opt/stacks/nebula-sync/compose.yaml /opt/stacks/nebula-sync/compose.yaml
 cp opt/stacks/nebula-sync/.env /opt/stacks/nebula-sync/.env
 
-sed -i '' "s|host1|$4|g" /opt/stacks/nebula-sync/.env
-sed -i '' "s|host2|$5|g" /opt/stacks/nebula-sync/.env
+cd /opt/stacks/nebula-sync/
+
+sed -i "s|host1|$4|g" .env
+sed -i "s|host2|$5|g" .env
 
 printf "\nDocker setup - configuration - end"
 printf "\nDocker setup - run - start\n\n"
-
-cd /opt/stacks/nebula-sync/
 
 docker compose up -d
 
 printf "\nDocker setup - run - end"
 printf "\nDocker setup - verify - start\n\n"
+
+sleep 5
 
 docker ps | grep nebula
 
