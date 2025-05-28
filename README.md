@@ -1,7 +1,8 @@
 # TrueNAS container setup
 
 ./pihole_install.sh gateway address mask
-./nebula_install.sh gateway address mask pihole1 mask pihole2 mask
+./nebula_install.sh gateway address mask pihole1 pihole2
+./traefik_install.sh gateway address mask domain email apitoken
 
 ## Information
 
@@ -30,5 +31,8 @@ Host: pihole-1.local:
 Host: pihole-2.local:
 ./pihole_install.sh 192.168.1.1 192.168.1.62 24
 
-Host: nebula.local:
+Host: nebula-1.local:
 ./nebula_install.sh 192.168.1.1 192.168.1.71 24 192.168.1.61 192.168.1.62
+
+Host: traefik-1.local:
+./traefik_install.sh 192.168.1.1 192.168.1.81 24 local.domain <admin@test.com> apitoken

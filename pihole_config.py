@@ -19,9 +19,16 @@ def set_domain(client: pihole6api.PiHole6Client):
 
   client.config.update_config(config_changes)
 
+def clear_hosts(client: pihole6api.PiHole6Client):
+  config = client.config.get_config()
+  host: str
+  for host in config["config"]["dns"]["hosts"]:
+    address, hostname = host.split()
+    client.config.remove_local_a_record(hostname, address)
+
 def add_hosts(client: pihole6api.PiHole6Client):
   for host in data["hosts"]:
-    client.config.add_local_a_record(".".join((host["name"], data["domain"])), host["address"])
+    client.config.add_local_a_record(".".join((host["name"], data["domain"])), host["reverse"])
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(prog="pihole_config", description="updates pihole configuration")
@@ -31,7 +38,7 @@ if __name__ == "__main__":
 
   client = pihole6api.PiHole6Client("https://{}/".format(args.address), "vk7COCiOSOuL4cvpvl9i/ccWoGV5zfUpWoib1KB5qvs=")
 
-  with open("./pihole.json", "r") as jsonfile:
+  with open("./config.json", "r") as jsonfile:
     data = json.load(jsonfile)
 
   clear_lists(client)
@@ -39,4 +46,5 @@ if __name__ == "__main__":
 
   set_domain(client)
 
+  clear_hosts(client)
   add_hosts(client)

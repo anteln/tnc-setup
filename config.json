@@ -1,0 +1,56 @@
+{
+  "lists": [
+    {
+      "address": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt",
+      "type": "block"
+    }
+  ],
+  "hosts": [
+    {
+      "name": "rt-1",
+      "address": "192.168.1.1",
+      "reverse": "192.168.1.81"
+    },
+    {
+      "name": "sw-1",
+      "address": "192.168.1.11",
+      "reverse": "192.168.1.81"
+    },
+    {
+      "name": "ck-1",
+      "address": "192.168.1.51",
+      "reverse": "192.168.1.81"
+    },
+    {
+      "name": "dell-t630-1",
+      "address": "192.168.1.61",
+      "reverse": "192.168.1.81"
+    },
+    {
+      "name": "pihole-1",
+      "address": "192.168.1.61",
+      "reverse": "192.168.1.81"
+    },
+    {
+      "name": "pihole-2",
+      "address": "192.168.1.62",
+      "reverse": "192.168.1.81"
+    },
+    {
+      "name": "nebula-1",
+      "address": "192.168.1.71",
+      "reverse": "192.168.1.81"
+    },
+    {
+      "name": "traefik-1",
+      "address": "192.168.1.81",
+      "reverse": "192.168.1.81"
+    },
+    {
+      "name": "nas-1",
+      "address": "192.168.1.101",
+      "reverse": "192.168.1.81"
+    }
+  ],
+  "domain": "local.domain"
+}
