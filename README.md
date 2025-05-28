@@ -31,4 +31,4 @@ Host: pihole-2.local:
 ./pihole_install.sh 192.168.1.1 192.168.1.62 24
 
 Host: nebula.local:
-./nebula_install.sh 192.168.1.1 192.168.1.71 24 192.168.1.61 24 192.168.1.62 24
+./nebula_install.sh 192.168.1.1 192.168.1.71 24 192.168.1.61 192.168.1.62

@@ -7,16 +7,40 @@
   ],
   "hosts": [
     {
+      "name": "rt-1",
+      "address": "192.168.1.1"
+    },
+    {
+      "name": "sw-1",
+      "address": "192.168.1.1"
+    },
+    {
+      "name": "ck-1",
+      "address": "192.168.1.51"
+    },
+    {
+      "name": "dell-t630-1",
+      "address": "192.168.1.61"
+    },
+    {
       "name": "pihole-1",
-      "address": "10.100.100.201"
+      "address": "192.168.1.61"
     },
     {
       "name": "pihole-2",
-      "address": "10.100.100.202"
+      "address": "192.168.1.62"
     },
     {
-      "name": "nebula",
-      "address": "10.100.100.203"
+      "name": "nebula-1",
+      "address": "192.168.1.71"
+    },
+    {
+      "name": "traefik-1",
+      "address": "192.168.1.81"
+    },
+    {
+      "name": "nas-1",
+      "address": "192.168.1.101"
     }
   ],
   "domain": "local.domain"
