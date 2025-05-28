@@ -30,4 +30,4 @@ networkctl reload
 sleep 5
 
 printf "\nBasic setup - network - end"
-printf "\nBasic setup - end\n
+printf "\nBasic setup - end\n"
