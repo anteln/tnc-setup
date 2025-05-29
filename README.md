@@ -4,14 +4,14 @@
 
 Create container instances running Debian Bookworm.\
 Setup with two (2) virtual CPU and 4096 MByte of RAM.\
-Use a pre-existing bridge.\
+Use a pre-existing bridge.
 
 ## Blocklists
 
-Good sources for blocklists can be found here:\
+Good sources for blocklists can be found here:
 
-* <https://github.com/hagezi/>\
-* <https://firebog.net/>\
+* <https://github.com/hagezi/>
+* <https://firebog.net/>
 
 ## How to use
 
