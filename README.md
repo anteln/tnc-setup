@@ -24,6 +24,7 @@ Note: the same config.json should be used for all install commands.\
 `./pihole_install.sh pihole-2`\
 `./nebula_install.sh nebula-1`\
 `./traefik_install.sh traefik-1`\
+`./openremote_install.sh or-1`\
 \
 In order to only update the pihole configuration use below commands.\
 \

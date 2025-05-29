@@ -67,12 +67,22 @@
       "config": "pihole"
     },
     "nebula-1": {
-      "address": "192.168.1.81",
+      "address": "192.168.1.80",
       "reverse": "192.168.1.81",
       "config": ""
     },
     "traefik-1": {
+      "address": "192.168.1.81",
+      "reverse": "192.168.1.81",
+      "config": ""
+    },
+    "or-1": {
       "address": "192.168.1.91",
+      "reverse": "192.168.1.81",
+      "config": "normal"
+    },
+    "knx-1": {
+      "address": "192.168.1.100",
       "reverse": "192.168.1.81",
       "config": ""
     }
