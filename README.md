@@ -30,4 +30,8 @@ In order to only update the pihole configuration use below commands.\
 \
 `python3 -m venv venv`\
 `venv/bin/pip install pihole6api`\
-`venv/bin/python3 pihole_config.py pihole-1`
+`venv/bin/python3 pihole_config.py pihole-1`\
+\
+In order to find occupied addresses run the below command in powershell.\
+\
+`1..100 | ForEach-Object { Test-Connection -Count 1 192.168.1.$_ -ErrorAction SilentlyContinue | Select-Object -First 1 }`
