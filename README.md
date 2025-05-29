@@ -20,7 +20,7 @@ Note: the same config.json should be used for all install commands.\
 \
 `apt update; apt install curl -y; curl https://raw.githubusercontent.com/anteln/tnc-setup/refs/heads/master/init.sh -o init.sh; chmod 755 init.sh; ./init.sh; cd tnc-setup`
 \
-./pihole_install.sh pihole-1\
-./pihole_install.sh pihole-2\
-./nebula_install.sh nebula-1\
-./traefik_install.sh traefik-1\
+`./pihole_install.sh pihole-1`
+`./pihole_install.sh pihole-2`
+`./nebula_install.sh nebula-1`
+`./traefik_install.sh traefik-1`
