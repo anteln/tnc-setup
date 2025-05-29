@@ -1,36 +1,36 @@
 http:
   routers:
-{% for router in routers %}
+{%- for router in routers %}
     {{router.name}}:
       entryPoints:
         - "https"
       rule: "Host(`{{router.name}}.{{router.domain}}`)"
       middlewares:
-{% for middleware in router.middlewares %}
+{%- for middleware in router.middlewares %}
         - {{middleware}}
-{% endfor %}
+{%- endfor %}
       tls: {}
       service: {{router.name}}
-{% endfor %}
+{%- endfor %}
 
   services:
-{% for service in services %}
+{%- for service in services %}
     {{service.name}}:
       loadBalancer:
         servers:
           - url: "{{service.url}}"
         passHostHeader: true
-{% endfor %}
+{%- endfor %}
 
   middlewares:
-{% for middleware in middlewares %}
+{%- for middleware in middlewares %}
     {{middleware.name}}:
       {{middleware.type}}:
         {{middleware.tag}}: "{{middleware.value}}"
-{% if middleware.permanent %}
+{%- if middleware.permanent %}
         permanent: true
-{% endif %}
-{% endfor %}
+{%- endif %}
+{%- endfor %}
     default-headers:
       headers:
         frameDeny: true

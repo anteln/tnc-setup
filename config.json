@@ -16,40 +16,65 @@
       "reverse": "192.168.1.81",
       "config": "normal"
     },
+    "sw-2": {
+      "address": "192.168.1.12",
+      "reverse": "192.168.1.81",
+      "config": "normal"
+    },
+    "ap-1": {
+      "address": "192.168.1.21",
+      "reverse": "192.168.1.81",
+      "config": ""
+    },
+    "ap-2": {
+      "address": "192.168.1.22",
+      "reverse": "192.168.1.81",
+      "config": ""
+    },
+    "t630-1": {
+      "address": "192.168.1.41",
+      "reverse": "192.168.1.81",
+      "config": "normal"
+    },
     "ck-1": {
       "address": "192.168.1.51",
       "reverse": "192.168.1.81",
       "config": "normal"
     },
-    "dell-t630-1": {
+    "nas-1": {
       "address": "192.168.1.61",
+      "reverse": "192.168.1.81",
+      "config": "normal"
+    },
+    "nas-2": {
+      "address": "192.168.1.62",
+      "reverse": "192.168.1.81",
+      "config": "normal"
+    },
+    "nas-3": {
+      "address": "192.168.1.63",
       "reverse": "192.168.1.81",
       "config": "normal"
     },
     "pihole-1": {
-      "address": "192.168.1.61",
+      "address": "192.168.1.71",
       "reverse": "192.168.1.81",
       "config": "pihole"
     },
     "pihole-2": {
-      "address": "192.168.1.62",
+      "address": "192.168.1.72",
       "reverse": "192.168.1.81",
       "config": "pihole"
     },
     "nebula-1": {
-      "address": "192.168.1.71",
-      "reverse": "192.168.1.81",
-      "config": ""
-    },
-    "traefik-1": {
       "address": "192.168.1.81",
       "reverse": "192.168.1.81",
       "config": ""
     },
-    "nas-1": {
-      "address": "192.168.1.101",
+    "traefik-1": {
+      "address": "192.168.1.91",
       "reverse": "192.168.1.81",
-      "config": "normal"
+      "config": ""
     }
   },
   "routers": {
@@ -73,7 +98,7 @@
       "port": 443
     }
   },
-  "schemas": {
+  "middlewares": {
     "https-redirect": {
       "type": "redirectScheme",
       "tag": "scheme",

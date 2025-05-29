@@ -7,28 +7,28 @@
 CR='\033[0;35m'
 NC='\033[0m'
 
-printf "\nTraefik setup - start"
-printf "\nTraefik setup - configure - start\n\n"
+printf "\n${CR}Traefik setup - start${NC}"
+printf "\n${CR}Traefik setup - configure - start${NC}\n\n"
 
 python3 -m venv venv
 venv/bin/pip install jinja2
-venv/bin/python3 traefik_config.py
+venv/bin/python3 traefik_config.py $1
 
-printf "\nTraefik setup - configure - end"
-printf "\nTraefik setup - package - start\n\n"
+printf "\n${CR}Traefik setup - configure - end${NC}"
+printf "\n${CR}Traefik setup - package - start${NC}\n\n"
 
 apt install apache2-utils -y
 
-printf "\nTraefik setup - package - end"
-printf "\nTraefik setup - folder - start\n\n"
+printf "\n${CR}Traefik setup - package - end${NC}"
+printf "\n${CR}Traefik setup - folder - start${NC}\n\n"
 
 mkdir -p /opt/stacks/traefik
 chmod 775 /opt/stacks/traefik
 mkdir -p /opt/stacks/traefik/data
 chmod 775 /opt/stacks/traefik/data
 
-printf "\nTraefik setup - folder - end"
-printf "\nTraefik setup - configuration - start\n\n"
+printf "\n${CR}Traefik setup - folder - end${NC}"
+printf "\n${CR}Traefik setup - configuration - start${NC}\n\n"
 
 cp opt/stacks/traefik/compose.yaml /opt/stacks/traefik/compose.yaml
 cp opt/stacks/traefik/cf_api_token /opt/stacks/traefik/cf_api_token
@@ -41,25 +41,20 @@ chmod 600 /opt/stacks/traefik/data/acme.json
 
 cd /opt/stacks/traefik/
 
-# sed -i "s|LOCALDOMAIN|$4|g" .env
-# sed -i "s|YOUREMAIL|$5|g" data/traefik.yml
-
-# echo $6 > ./cf_api_token
-
 echo TRAEFIK_DASHBOARD_CREDENTIALS=$(htpasswd -nB admin) | sed -e s/\\$/\\$\\$/g > ./.env
 
-printf "\nTraefik setup - configuration - end"
-printf "\nTraefik setup - run - start\n\n"
+printf "\n${CR}Traefik setup - configuration - end${NC}"
+printf "\n${CR}Traefik setup - run - start${NC}\n\n"
 
 docker network create proxy
 # docker compose up -d
 
-printf "\nTraefik setup - run - end"
-printf "\nTraefik setup - verify - start\n\n"
+printf "\n${CR}Traefik setup - run - end${NC}"
+printf "\n${CR}Traefik setup - verify - start${NC}\n\n"
 
 sleep 15
 
 docker ps | grep traefik
 
-printf "\nTraefik setup - verify - end"
-printf "\nTraefik setup - end\n"
+printf "\n${CR}Traefik setup - verify - end${NC}"
+printf "\n${CR}Traefik setup - end${NC}\n"
