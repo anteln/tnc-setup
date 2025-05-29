@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CR='\033[0;31m'
+CR='\033[0;35m'
 NC='\033[0m'
 
 printf "\n${CR}Basic setup - start${NC}"
@@ -9,15 +9,15 @@ printf "\n${CR}Basic setup - package - start${NC}\n\n"
 apt update
 apt install less nano curl jq -y
 
-printf "\nBasic setup - package - end"
-printf "\nBasic setup - configuration - start\n\n"
+printf "\n${CR}Basic setup - package - end${NC}"
+printf "\n${CR}Basic setup - configuration - start${NC}\n\n"
 
 GATEWAY=$(jq -r .gateway config.json)
 ADDRESS=$(jq -r .hosts.\"$1\".address config.json)
 MASK=$(jq -r .mask config.json)
 
-printf "\nBasic setup - configuration - end"
-printf "\nBasic setup - network - start\n\n"
+printf "\n${CR}Basic setup - configuration - end${NC}"
+printf "\n${CR}Basic setup - network - start${NC}\n\n"
 
 echo \
 "[Match]
@@ -39,5 +39,5 @@ networkctl reload
 
 sleep 5
 
-printf "\nBasic setup - network - end"
-printf "\nBasic setup - end\n"
+printf "\n${CR}Basic setup - network - end${NC}"
+printf "\n${CR}Basic setup - end${NC}\n"

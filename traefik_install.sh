@@ -4,6 +4,9 @@
 
 ./docker.sh
 
+CR='\033[0;35m'
+NC='\033[0m'
+
 printf "\nTraefik setup - start"
 printf "\nTraefik setup - configure - start\n\n"
 
