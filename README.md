@@ -23,4 +23,10 @@ Note: the same config.json should be used for all install commands.\
 `./pihole_install.sh pihole-1`\
 `./pihole_install.sh pihole-2`\
 `./nebula_install.sh nebula-1`\
-`./traefik_install.sh traefik-1`
+`./traefik_install.sh traefik-1`\
+\
+In order to only update the pihole configuration use below commands.\
+\
+`python3 -m venv venv`\
+`venv/bin/pip install pihole6api`\
+`venv/bin/python3 pihole_config.py pihole-1`
