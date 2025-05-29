@@ -1,7 +1,10 @@
 #!/bin/bash
 
-printf "\nBasic setup - start"
-printf "\nBasic setup - package - start\n\n"
+CR='\033[0;31m'
+NC='\033[0m'
+
+printf "\n${CR}Basic setup - start${NC}"
+printf "\n${CR}Basic setup - package - start${NC}\n\n"
 
 apt update
 apt install less nano curl jq -y
