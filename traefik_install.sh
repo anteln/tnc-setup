@@ -1,10 +1,17 @@
 #!/bin/bash
 
-./basics.sh $1 $2 $3
+./basics.sh $1
 
 ./docker.sh
 
 printf "\nTraefik setup - start"
+printf "\nTraefik setup - configure - start\n\n"
+
+python3 -m venv venv
+venv/bin/pip install jinja2
+venv/bin/python3 traefik_config.py
+
+printf "\nTraefik setup - configure - end"
 printf "\nTraefik setup - package - start\n\n"
 
 apt install apache2-utils -y
@@ -31,10 +38,10 @@ chmod 600 /opt/stacks/traefik/data/acme.json
 
 cd /opt/stacks/traefik/
 
-sed -i "s|LOCALDOMAIN|$4|g" .env
-sed -i "s|YOUREMAIL|$5|g" data/traefik.yml
+# sed -i "s|LOCALDOMAIN|$4|g" .env
+# sed -i "s|YOUREMAIL|$5|g" data/traefik.yml
 
-echo $6 > ./cf_api_token
+# echo $6 > ./cf_api_token
 
 echo TRAEFIK_DASHBOARD_CREDENTIALS=$(htpasswd -nB admin) | sed -e s/\\$/\\$\\$/g > ./.env
 

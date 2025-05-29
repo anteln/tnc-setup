@@ -27,19 +27,19 @@ def clear_hosts(client: pihole6api.PiHole6Client):
     client.config.remove_local_a_record(hostname, address)
 
 def add_hosts(client: pihole6api.PiHole6Client):
-  for host in data["hosts"]:
-    client.config.add_local_a_record(".".join((host["name"], data["domain"])), host["reverse"])
+  for name, values in data["hosts"]:
+    client.config.add_local_a_record(".".join((name, data["domain"])), values["reverse"])
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(prog="pihole_config", description="updates pihole configuration")
-  parser.add_argument("address", action="store", help="runs the automatic check")
+  parser.add_argument("host", action="store", help="the host to configure")
 
   args = parser.parse_args()
 
-  client = pihole6api.PiHole6Client("https://{}/".format(args.address), "vk7COCiOSOuL4cvpvl9i/ccWoGV5zfUpWoib1KB5qvs=")
-
   with open("./config.json", "r") as jsonfile:
     data = json.load(jsonfile)
+
+  client = pihole6api.PiHole6Client("https://{}/".format(data["hosts"][args.host]["address"]), "vk7COCiOSOuL4cvpvl9i/ccWoGV5zfUpWoib1KB5qvs=")
 
   clear_lists(client)
   add_lists(client)

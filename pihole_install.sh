@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./basics.sh $1 $2 $3
+./basics.sh $1
 
 printf "\nPihole setup - start"
 printf "\nPihole setup - package - start\n\n"
@@ -39,7 +39,7 @@ printf "\nPihole setup - configure - start\n\n"
 
 python3 -m venv venv
 venv/bin/pip install pihole6api
-venv/bin/python3 pihole_config.py $2
+venv/bin/python3 pihole_config.py $1
 
 printf "\nPihole setup - configure - end"
 printf "\nPihole setup - update - start\n\n"

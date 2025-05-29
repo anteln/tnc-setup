@@ -5,52 +5,91 @@
       "type": "block"
     }
   ],
-  "hosts": [
-    {
-      "name": "rt-1",
+  "hosts": {
+    "rt-1": {
       "address": "192.168.1.1",
-      "reverse": "192.168.1.81"
+      "reverse": "192.168.1.81",
+      "config": "normal"
     },
-    {
-      "name": "sw-1",
+    "sw-1": {
       "address": "192.168.1.11",
-      "reverse": "192.168.1.81"
+      "reverse": "192.168.1.81",
+      "config": "normal"
     },
-    {
-      "name": "ck-1",
+    "ck-1": {
       "address": "192.168.1.51",
-      "reverse": "192.168.1.81"
+      "reverse": "192.168.1.81",
+      "config": "normal"
     },
-    {
-      "name": "dell-t630-1",
+    "dell-t630-1": {
       "address": "192.168.1.61",
-      "reverse": "192.168.1.81"
+      "reverse": "192.168.1.81",
+      "config": "normal"
     },
-    {
-      "name": "pihole-1",
+    "pihole-1": {
       "address": "192.168.1.61",
-      "reverse": "192.168.1.81"
+      "reverse": "192.168.1.81",
+      "config": "pihole"
     },
-    {
-      "name": "pihole-2",
+    "pihole-2": {
       "address": "192.168.1.62",
-      "reverse": "192.168.1.81"
+      "reverse": "192.168.1.81",
+      "config": "pihole"
     },
-    {
-      "name": "nebula-1",
+    "nebula-1": {
       "address": "192.168.1.71",
-      "reverse": "192.168.1.81"
+      "reverse": "192.168.1.81",
+      "config": ""
     },
-    {
-      "name": "traefik-1",
+    "traefik-1": {
       "address": "192.168.1.81",
-      "reverse": "192.168.1.81"
+      "reverse": "192.168.1.81",
+      "config": ""
     },
-    {
-      "name": "nas-1",
+    "nas-1": {
       "address": "192.168.1.101",
-      "reverse": "192.168.1.81"
+      "reverse": "192.168.1.81",
+      "config": "normal"
     }
-  ],
-  "domain": "local.domain"
+  },
+  "routers": {
+    "normal": [
+      "default-headers",
+      "https-redirect"
+    ],
+    "pihole": [
+      "default-headers",
+      "addprefix-pihole",
+      "https-redirect"
+    ]
+  },
+  "services": {
+    "normal": {
+      "protocol": "https",
+      "port": 443
+    },
+    "pihole": {
+      "protocol": "https",
+      "port": 443
+    }
+  },
+  "schemas": {
+    "https-redirect": {
+      "type": "redirectScheme",
+      "tag": "scheme",
+      "value": "https",
+      "permanent": true
+    },
+    "addprefix-pihole": {
+      "type": "addPrefix",
+      "tag": "prefix",
+      "value": "/admin",
+      "permanent": false
+    }
+  },
+  "gateway": "192.168.1.1",
+  "mask": 24,
+  "domain": "local.domain",
+  "email": "admin@test.com",
+  "token": "cloudflare-api-token"
 }

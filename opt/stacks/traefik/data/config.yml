@@ -1,18 +1,9 @@
 http:
-  routers:
-    ALLROUTERS
-
-  services:
-    ALLSERVICES
-
   middlewares:
-    https-redirectscheme:
-      redirectScheme:
-        scheme: https
-        permanent: true
     default-headers:
       headers:
         frameDeny: true
+        sslRedirect: true
         browserXssFilter: true
         contentTypeNosniff: true
         forceSTSHeader: true
@@ -25,7 +16,9 @@ http:
     default-whitelist:
       ipAllowList:
         sourceRange:
-          - "192.168.1.0/24"
+          - "10.0.0.0/8"
+          - "192.168.0.0/16"
+          - "172.16.0.0/12"
     secured:
       chain:
         middlewares:

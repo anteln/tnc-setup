@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./basics.sh $1 $2 $3
+./basics.sh $1
 
 ./docker.sh
 
@@ -18,8 +18,11 @@ cp opt/stacks/nebula-sync/.env /opt/stacks/nebula-sync/.env
 
 cd /opt/stacks/nebula-sync/
 
-sed -i "s|host1|$4|g" .env
-sed -i "s|host2|$5|g" .env
+PIHOLE1=$(jq -r .hosts.\"pihole-1\".address config.json)
+PIHOLE2=$(jq -r .hosts.\"pihole-2\".address config.json)
+
+sed -i "s|host1|$PIHOLE1|g" .env
+sed -i "s|host2|$PIHOLE2|g" .env
 
 printf "\nNebula setup - configuration - end"
 printf "\nNebula setup - run - start\n\n"
