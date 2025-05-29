@@ -18,14 +18,7 @@ Good sources for blocklists can be found here:\
 First edit config.json to match the infrastucture and environment.\
 Note: the same config.json should be used for all install commands.\
 \
-apt update\
-apt upgrade -y\
-\
-apt install git -y\
-\
-git clone <https://github.com/anteln/tnc-setup.git>\
-\
-cd tnc-setup\
+`apt update; apt install curl -y; curl https://raw.githubusercontent.com/anteln/tnc-setup/refs/heads/master/init.sh -o init.sh; chmod 755 init.sh; ./init.sh; cd tnc-setup`
 \
 ./pihole_install.sh pihole-1\
 ./pihole_install.sh pihole-2\
