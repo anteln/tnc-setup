@@ -5,7 +5,7 @@ import jinja2
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(prog="traefik_config", description="updates traefik configuration")
-  parser.add_argument("address", action="store", help="runs the automatic check")
+  parser.add_argument("host", action="store", help="the host to configure")
 
   args = parser.parse_args()
 
