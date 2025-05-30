@@ -33,5 +33,6 @@ In order to only update the pihole configuration use below commands.\
 `venv/bin/python3 pihole_config.py pihole-1`\
 \
 In order to find occupied addresses run the below command in powershell.\
+Note: only works for the addresses occupied by services reponding to ping.\
 \
 `1..100 | ForEach-Object { Test-Connection -Count 1 192.168.1.$_ -ErrorAction SilentlyContinue | Select-Object -First 1 }`
