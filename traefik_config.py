@@ -6,11 +6,11 @@ import jinja2
 def generate_config():
   config = { "routers": [], "services": [], "middlewares": [] }
   for name, values in data["hosts"].items():
-    if values["config"] != "":
+    if "config" in values.keys():
       protocol = data["services"][values["config"]]["protocol"]
       port = data["services"][values["config"]]["port"]
-      config["routers"].append({ "name": name, "domain": data["domain"], "middlewares": data["routers"][values["config"]] })
-      config["services"].append({ "name": name, "url": "{}://{}.{}:{}".format(protocol, name, data["domain"], port)})
+      config["routers"].append({ "name": values["alias"], "domain": data["domain"], "middlewares": data["routers"][values["config"]] })
+      config["services"].append({ "name": values["alias"], "url": "{}://{}.{}:{}".format(protocol, name, data["domain"], port)})
 
   for name, values in data["middlewares"].items():
     config["middlewares"].append({ "name": name, "type": values["type"], "tag": values["tag"], "value": values["value"], "permanent": values["permanent"] })

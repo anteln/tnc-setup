@@ -19,8 +19,8 @@ printf "\n${CR}Nebula setup - configuration - start${NC}\n\n"
 cp opt/stacks/nebula-sync/compose.yaml /opt/stacks/nebula-sync/compose.yaml
 cp opt/stacks/nebula-sync/.env /opt/stacks/nebula-sync/.env
 
-PIHOLE1=$(jq -r .hosts.\"pihole-1\".address config.json)
-PIHOLE2=$(jq -r .hosts.\"pihole-2\".address config.json)
+PIHOLE1=$(jq -r .hosts.\"ns-1\".address config.json)
+PIHOLE2=$(jq -r .hosts.\"ns-2\".address config.json)
 
 cd /opt/stacks/nebula-sync/
 

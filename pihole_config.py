@@ -28,7 +28,10 @@ def clear_hosts(client: pihole6api.PiHole6Client):
 
 def add_hosts(client: pihole6api.PiHole6Client):
   for name, values in data["hosts"].items():
-    client.config.add_local_a_record(".".join((name, data["domain"])), values["reverse"])
+    client.config.add_local_a_record(".".join((name, data["domain"])), values["address"])
+    if "aliases" in values.keys():
+      for alias in values["aliases"]:
+        client.config.add_local_a_record(".".join((alias, data["domain"])), values["address"])
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(prog="pihole_config", description="updates pihole configuration")
