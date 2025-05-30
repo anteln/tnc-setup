@@ -8,6 +8,11 @@ CR='\033[0;35m'
 NC='\033[0m'
 
 printf "\n${CR}Traefik setup - start${NC}"
+printf "\n${CR}Traefik setup - package - start${NC}\n\n"
+
+apt install python3-full python3-pip apache2-utils -y
+
+printf "\n${CR}Traefik setup - package - end${NC}"
 printf "\n${CR}Traefik setup - configure - start${NC}\n\n"
 
 python3 -m venv venv
@@ -15,11 +20,6 @@ venv/bin/pip install jinja2
 venv/bin/python3 traefik_config.py $1
 
 printf "\n${CR}Traefik setup - configure - end${NC}"
-printf "\n${CR}Traefik setup - package - start${NC}\n\n"
-
-apt install apache2-utils -y
-
-printf "\n${CR}Traefik setup - package - end${NC}"
 printf "\n${CR}Traefik setup - folder - start${NC}\n\n"
 
 mkdir -p /opt/stacks/traefik
@@ -47,7 +47,7 @@ printf "\n${CR}Traefik setup - configuration - end${NC}"
 printf "\n${CR}Traefik setup - run - start${NC}\n\n"
 
 docker network create proxy
-# docker compose up -d
+docker compose up -d
 
 printf "\n${CR}Traefik setup - run - end${NC}"
 printf "\n${CR}Traefik setup - verify - start${NC}\n\n"
