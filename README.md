@@ -7,9 +7,9 @@ Setup with two (2) virtual CPU and 4096 MByte of RAM.\
 Use a pre-existing bridge.\
 \
 The hostnames are used for direct access to services\
-hosted (for example, a Samba share from a NAS) while the\
-host aliases are used for the secure websites for the\
-services (for example, a NAS management UI).
+hosted (for example, a Samba share from a NAS) while\
+the host aliases are used for the secure websites for\
+the services (for example, a NAS management UI).
 
 ## Blocklists
 
