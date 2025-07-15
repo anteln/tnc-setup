@@ -1,6 +1,12 @@
 #!/bin/bash
 
-./basics.sh $1
+if [ -z "$1" ]; then
+  HN=$(hostname)
+else
+  HN=$1
+fi
+
+./basics.sh $HN
 
 ./docker.sh
 

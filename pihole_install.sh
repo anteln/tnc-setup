@@ -1,6 +1,12 @@
 #!/bin/bash
 
-./basics.sh $1
+if [ -z "$1" ]; then
+  HN=$(hostname)
+else
+  HN=$1
+fi
+
+./basics.sh $HN
 
 CR='\033[0;35m'
 NC='\033[0m'
@@ -42,7 +48,7 @@ printf "\n${CR}Pihole setup - configure - start${NC}\n\n"
 
 python3 -m venv venv
 venv/bin/pip install pihole6api
-venv/bin/python3 pihole_config.py $1
+venv/bin/python3 pihole_config.py $HN
 
 printf "\n${CR}Pihole setup - configure - end${NC}"
 printf "\n${CR}Pihole setup - update - start${NC}\n\n"

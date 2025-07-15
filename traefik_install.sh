@@ -1,6 +1,12 @@
 #!/bin/bash
 
-./basics.sh $1
+if [ -z "$1" ]; then
+  HN=$(hostname)
+else
+  HN=$1
+fi
+
+./basics.sh $HN
 
 ./docker.sh
 
@@ -17,7 +23,7 @@ printf "\n${CR}Traefik setup - configure - start${NC}\n\n"
 
 python3 -m venv venv
 venv/bin/pip install jinja2
-venv/bin/python3 traefik_config.py $1
+venv/bin/python3 traefik_config.py $HN
 
 printf "\n${CR}Traefik setup - configure - end${NC}"
 printf "\n${CR}Traefik setup - folder - start${NC}\n\n"
