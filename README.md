@@ -35,6 +35,8 @@ Next run the corresponding commands for the services.\
 \
 `nano config.json`\
 \
+The order of deployment is according to the command list below:\
+\
 `./pihole_install.sh ns-1`\
 `./pihole_install.sh ns-2`\
 `./nebula_install.sh nebula-1`\
