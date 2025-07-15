@@ -1,30 +1,12 @@
 volumes:
-  proxy-data:
-  manager-data:
   postgresql-data:
+  manager-data:
 
 services:
-  proxy:
-    image: openremote/proxy:latest
-    restart: always
-    depends_on:
-      manager:
-        condition: service_healthy
-    ports:
-      - "80:80" # Needed for SSL generation using letsencrypt
-      - "443:443"
-      - "8883:8883"
-      - "127.0.0.1:8404:8404" # Localhost metrics access
-    volumes:
-      - proxy-data:/deployment
-    environment:
-      LE_EMAIL: YOUREMAIL
-      DOMAINNAME: LOCALDOMAIN
-      DOMAINNAMES: 
   postgresql:
     restart: always
     image: openremote/postgresql:latest
-    shm_size: 128mb
+    shm_size: 512mb
     volumes:
       - postgresql-data:/var/lib/postgresql/data
       - manager-data:/storage
@@ -34,35 +16,26 @@ services:
     depends_on:
       postgresql:
         condition: service_healthy
+    ports:
+      - "8081:8080"
     volumes:
       - ./deployment:/deployment
     environment:
-      KEYCLOAK_ADMIN_PASSWORD: ${OR_ADMIN_PASSWORD:-secret}
       KC_HOSTNAME: ${OR_HOSTNAME:-localhost}
       KC_HOSTNAME_PORT: ${OR_SSL_PORT:--1}
+      KEYCLOAK_ADMIN_PASSWORD: ${OR_ADMIN_PASSWORD:-secret}
   manager:
-#    privileged: true
     restart: always
     image: openremote/manager:latest
     depends_on:
       keycloak:
         condition: service_healthy
     ports:
+      - "8080:8080"
       - "127.0.0.1:8405:8405" # Localhost metrics access
-    environment:
-      OR_SETUP_TYPE:
-      OR_ADMIN_PASSWORD:
-      OR_SETUP_RUN_ON_RESTART:
-      OR_EMAIL_HOST:
-      OR_EMAIL_USER:
-      OR_EMAIL_PASSWORD:
-      OR_EMAIL_X_HEADERS:
-      OR_EMAIL_FROM:
-      OR_EMAIL_ADMIN:
-      OR_METRICS_ENABLED: false
-      OR_HOSTNAME: localhost
-      OR_ADDITIONAL_HOSTNAMES:
-      OR_SSL_PORT: -1
-      OR_DEV_MODE: false
     volumes:
       - manager-data:/storage
+    environment:
+      OR_HOSTNAME: ${OR_HOSTNAME:-localhost}
+      OR_SSL_PORT: ${OR_SSL_PORT:--1}
+      OR_ADMIN_PASSWORD: ${OR_ADMIN_PASSWORD:-secret}

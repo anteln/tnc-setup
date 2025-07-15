@@ -16,6 +16,10 @@ chmod 775 /opt/stacks/openremote
 printf "\n${CR}Openremote setup - folder - end${NC}"
 printf "\n${CR}Openremote setup - configuration - start${NC}\n\n"
 
+export OR_HOSTNAME=$(jq -r .hosts.\"$1\".address config.json)
+export OR_SSL_PORT=443
+export OR_ADMINPASSWORD=calvin
+
 cp opt/stacks/openremote/compose.yaml /opt/stacks/openremote/compose.yaml
 
 cd /opt/stacks/openremote/
