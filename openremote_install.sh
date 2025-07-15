@@ -14,17 +14,6 @@ CR='\033[0;35m'
 NC='\033[0m'
 
 printf "\n${CR}Openremote setup - start${NC}"
-printf "\n${CR}Openremote setup - package - start${NC}\n\n"
-
-apt install python3-full python3-pip apache2-utils -y
-
-printf "\n${CR}Openremote setup - package - end${NC}"
-printf "\n${CR}Openremote setup - configure - start${NC}\n\n"
-
-#python3 -m venv venv
-#venv/bin/python3 openremote_config.py $HN
-
-printf "\n${CR}Openremote setup - configure - end${NC}"
 printf "\n${CR}Openremote setup - folder - start${NC}\n\n"
 
 mkdir -p /opt/stacks/openremote
@@ -33,7 +22,12 @@ chmod 775 /opt/stacks/openremote
 printf "\n${CR}Openremote setup - folder - end${NC}"
 printf "\n${CR}Openremote setup - configuration - start${NC}\n\n"
 
+ALIAS=$(jq -r .hosts.\"$HN\".alias config.json)
+DOMAIN=$(jq -r .domain config.json)
+
 export OR_HOSTNAME=$(jq -r .hosts.\"$HN\".address config.json)
+export OR_ADDITIONAL_HOSTNAMES="$HN.$DOMAIN,$ALIAS.$DOMAIN"
+export OR_ADMIN_PASSWORD=calvin
 
 cp opt/stacks/openremote/compose.yaml /opt/stacks/openremote/compose.yaml
 
