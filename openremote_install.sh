@@ -15,8 +15,8 @@ apt install python3-full python3-pip apache2-utils -y
 printf "\n${CR}Openremote setup - package - end${NC}"
 printf "\n${CR}Openremote setup - configure - start${NC}\n\n"
 
-python3 -m venv venv
-venv/bin/python3 openremote_config.py $1
+#python3 -m venv venv
+#venv/bin/python3 openremote_config.py $1
 
 printf "\n${CR}Openremote setup - configure - end${NC}"
 printf "\n${CR}Openremote setup - folder - start${NC}\n\n"
@@ -34,7 +34,7 @@ cd /opt/stacks/openremote/
 printf "\n${CR}Openremote setup - configuration - end${NC}"
 printf "\n${CR}Openremote setup - run - start${NC}\n\n"
 
-docker compose up -d
+docker compose -p openremote up -d
 
 printf "\n${CR}Openremote setup - run - end${NC}"
 printf "\n${CR}Openremote setup - verify - start${NC}\n\n"
