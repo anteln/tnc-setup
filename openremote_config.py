@@ -1,12 +1,10 @@
 import json
 import argparse
 
-import jinja2
-
 def generate_compose():
-  with open("./opt/stacks/traefik/compose.yaml", "r") as composefile:
+  with open("./opt/stacks/openremote/compose.yaml", "r") as composefile:
     contents = composefile.read().replace("HOSTNAME", data["hosts"][args.host]["address"]).replace("SSL_PORT", "443").replace("PASSWORD", "calvin")
-  with open("./opt/stacks/traefik/compose.yaml", "w") as composefile:
+  with open("./opt/stacks/openremote/compose.yaml", "w") as composefile:
     composefile.write(contents)
 
 if __name__ == "__main__":
