@@ -79,7 +79,7 @@
     },
     "or-1": {
       "address": "192.168.1.91",
-      "config": "normal",
+      "config": "or",
       "alias": "or"
     },
     "knx-1": {
@@ -100,12 +100,20 @@
       "default-headers",
       "https-redirect",
       "ns2-redirect"
+    ],
+    "or": [
+      "default-headers",
+      "https-redirect"
     ]
   },
   "services": {
     "normal": {
       "protocol": "https",
       "port": 443
+    },
+    "or": {
+      "protocol": "http",
+      "port": 8080
     }
   },
   "middlewares": {

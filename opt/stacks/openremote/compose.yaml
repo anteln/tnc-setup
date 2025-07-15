@@ -21,9 +21,9 @@ services:
     volumes:
       - ./deployment:/deployment
     environment:
-      KC_HOSTNAME: ${OR_HOSTNAME:-localhost}
-      KC_HOSTNAME_PORT: ${OR_SSL_PORT:--1}
-      KEYCLOAK_ADMIN_PASSWORD: ${OR_ADMIN_PASSWORD:-secret}
+      KC_HOSTNAME: HOSTNAME
+      KC_HOSTNAME_PORT: SSL_PORT
+      KEYCLOAK_ADMIN_PASSWORD: PASSWORD
   manager:
     restart: always
     image: openremote/manager:latest
@@ -36,6 +36,6 @@ services:
     volumes:
       - manager-data:/storage
     environment:
-      OR_HOSTNAME: ${OR_HOSTNAME:-localhost}
-      OR_SSL_PORT: ${OR_SSL_PORT:--1}
-      OR_ADMIN_PASSWORD: ${OR_ADMIN_PASSWORD:-secret}
+      OR_HOSTNAME: HOSTNAME
+      OR_SSL_PORT: SSL_PORT
+      OR_ADMIN_PASSWORD: PASSWORD
