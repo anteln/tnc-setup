@@ -29,7 +29,7 @@ http:
 {%- if middleware.permanent %}
         permanent: true
 {%- endif %}
-{%- for rule in middlewares.rules %}
+{%- for rule in middleware.rules %}
         {{rule.tag}}: "{{rule.value}}"
 {%- endfor %}
 {%- endfor %}
