@@ -1,6 +1,7 @@
 volumes:
   postgresql-data:
   manager-data:
+  proxy-data:
 
 services:
   postgresql:
@@ -16,8 +17,6 @@ services:
     depends_on:
       postgresql:
         condition: service_healthy
-    ports:
-      - "8081:8080"
     volumes:
       - ./deployment:/deployment
     environment:
@@ -30,10 +29,23 @@ services:
       keycloak:
         condition: service_healthy
     ports:
-      - "8080:8080"
       - "127.0.0.1:8405:8405" # Localhost metrics access
     volumes:
       - manager-data:/storage
     environment:
       OR_HOSTNAME: CFG_HOSTNAME
       OR_ADMIN_PASSWORD: CFG_PASSWORD
+  proxy:
+    restart: always
+    image: openremote/proxy:latest
+    depends_on:
+      manager:
+        condition: service_healthy
+    ports:
+      - "443:443"
+      - "8883:8883"
+      - "127.0.0.1:8404:8404" # Localhost metrics access
+    volumes:
+      - proxy-data:/deployment
+    environment:
+      DOMAINNAME: CFG_HOSTNAME
