@@ -5,6 +5,7 @@
 Create container instances running Debian Bookworm.\
 Setup with two (2) virtual CPU and 4096 MByte of RAM.\
 Use a pre-existing bridge.\
+Note: Do NOT use default network settings!\
 \
 The hostnames are used for direct access to services\
 hosted (for example, a Samba share from a NAS) while\
