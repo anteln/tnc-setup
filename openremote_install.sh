@@ -1,6 +1,12 @@
 #!/bin/bash
 
-./basics.sh $1
+if [ -z "$1" ]; then
+  HN=$(hostname)
+else
+  HN=$1
+fi
+
+./basics.sh $HN
 
 ./docker.sh
 
@@ -16,7 +22,7 @@ printf "\n${CR}Openremote setup - package - end${NC}"
 printf "\n${CR}Openremote setup - configure - start${NC}\n\n"
 
 #python3 -m venv venv
-#venv/bin/python3 openremote_config.py $1
+#venv/bin/python3 openremote_config.py $HN
 
 printf "\n${CR}Openremote setup - configure - end${NC}"
 printf "\n${CR}Openremote setup - folder - start${NC}\n\n"
@@ -26,6 +32,8 @@ chmod 775 /opt/stacks/openremote
 
 printf "\n${CR}Openremote setup - folder - end${NC}"
 printf "\n${CR}Openremote setup - configuration - start${NC}\n\n"
+
+export OR_HOSTNAME=$(jq -r .hosts.\"$HN\".address config.json)
 
 cp opt/stacks/openremote/compose.yaml /opt/stacks/openremote/compose.yaml
 

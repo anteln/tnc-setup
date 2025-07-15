@@ -30,7 +30,8 @@ The file can be downloaded from:\
 \
 `https://raw.githubusercontent.com/anteln/tnc-setup/refs/heads/master/config.json`
 \
-Next run the corresponding commands for the services.\
+Next execute the commands for setting up and starting the services.\
+Note: Make sure the host has an internet connection before this.\
 \
 `apt update; apt install curl -y; curl https://raw.githubusercontent.com/anteln/tnc-setup/refs/heads/master/init.sh -o init.sh; chmod 755 init.sh; ./init.sh; cd tnc-setup`\
 \
@@ -38,11 +39,15 @@ Next run the corresponding commands for the services.\
 \
 The order of deployment is according to the command list below:\
 \
-`./pihole_install.sh ns-1`\
-`./pihole_install.sh ns-2`\
-`./nebula_install.sh nebula-1`\
-`./traefik_install.sh traefik-1`\
-`./openremote_install.sh or-1`\
+`./pihole_install.sh`\
+`./nebula_install.sh`\
+`./traefik_install.sh`\
+`./openremote_install.sh`\
+\
+Each shell script above can be run with a parameter specifying the\
+hostname or without. If used without the hostname parameter (which\
+is the recommended way) the script will retrieve the current\
+hostname instead.\
 \
 In order to only update the pihole configuration use below commands.\
 \
