@@ -22,11 +22,13 @@ chmod 775 /opt/stacks/openremote
 printf "\n${CR}Openremote setup - folder - end${NC}"
 printf "\n${CR}Openremote setup - configuration - start${NC}\n\n"
 
+ADDRESS=$(jq -r .hosts.\"$HN\".address config.json)
 ALIAS=$(jq -r .hosts.\"$HN\".alias config.json)
+
 DOMAIN=$(jq -r .domain config.json)
 
-export OR_HOSTNAME=$(jq -r .hosts.\"$HN\".address config.json)
-export OR_ADDITIONAL_HOSTNAMES="$HN.$DOMAIN,$ALIAS.$DOMAIN"
+export OR_HOSTNAME="$ALIAS.$DOMAIN"
+export OR_ADDITIONAL_HOSTNAMES="$ADDRESS,$HN.$DOMAIN"
 export OR_ADMIN_PASSWORD=calvin
 
 cp opt/stacks/openremote/compose.yaml /opt/stacks/openremote/compose.yaml
