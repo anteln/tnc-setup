@@ -16,7 +16,6 @@ printf "\n${CR}Openremote setup - package - end${NC}"
 printf "\n${CR}Openremote setup - configure - start${NC}\n\n"
 
 python3 -m venv venv
-venv/bin/pip install jinja2
 venv/bin/python3 openremote_config.py $1
 
 printf "\n${CR}Openremote setup - configure - end${NC}"
