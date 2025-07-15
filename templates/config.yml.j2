@@ -26,10 +26,12 @@ http:
 {%- for middleware in middlewares %}
     {{middleware.name}}:
       {{middleware.type}}:
-        {{middleware.tag}}: "{{middleware.value}}"
 {%- if middleware.permanent %}
         permanent: true
 {%- endif %}
+{%- for rule in middlewares.rules %}
+        {{rule.tag}}: "{{rule.value}}"
+{%- endfor %}
 {%- endfor %}
     default-headers:
       headers:

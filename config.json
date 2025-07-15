@@ -1,4 +1,8 @@
 {
+  "config": {
+    "test": true,
+    "prod": false
+  },
   "lists": [
     {
       "address": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt",
@@ -24,9 +28,7 @@
       "address": "192.168.1.22"
     },
     "t630-1": {
-      "address": "192.168.1.41",
-      "config": "normal",
-      "alias": "t630"
+      "address": "192.168.1.41"
     },
     "ck-1": {
       "address": "192.168.1.51",
@@ -50,12 +52,12 @@
     },
     "ns-1": {
       "address": "192.168.1.71",
-      "config": "pihole",
+      "config": "ns1",
       "alias": "ns1"
     },
     "ns-2": {
       "address": "192.168.1.72",
-      "config": "pihole",
+      "config": "ns2",
       "alias": "ns2"
     },
     "nebula-1": {
@@ -63,16 +65,15 @@
     },
     "traefik-1": {
       "address": "192.168.1.81",
+      "alias": "traefik",
       "aliases": [
         "sw1",
-        "t630",
         "ck",
         "nas1",
         "nas2",
         "nas3",
         "ns1",
         "ns2",
-        "traefik",
         "or"
       ]
     },
@@ -90,18 +91,19 @@
       "default-headers",
       "https-redirect"
     ],
-    "pihole": [
+    "ns1": [
       "default-headers",
-      "addprefix-pihole",
-      "https-redirect"
+      "https-redirect",
+      "ns1-redirect"
+    ],
+    "ns2": [
+      "default-headers",
+      "https-redirect",
+      "ns2-redirect"
     ]
   },
   "services": {
     "normal": {
-      "protocol": "https",
-      "port": 443
-    },
-    "pihole": {
       "protocol": "https",
       "port": 443
     }
@@ -109,15 +111,41 @@
   "middlewares": {
     "https-redirect": {
       "type": "redirectScheme",
-      "tag": "scheme",
-      "value": "https",
-      "permanent": true
+      "permanent": true,
+      "rules": [
+        {
+          "tag": "scheme",
+          "value": "https"
+        }
+      ]
     },
-    "addprefix-pihole": {
-      "type": "addPrefix",
-      "tag": "prefix",
-      "value": "/admin",
-      "permanent": false
+    "ns1-redirect": {
+      "type": "redirectRegex",
+      "permanent": true,
+      "rules": [
+        {
+          "tag": "regex",
+          "value": "^https://ns1.local.domain/?$"
+        },
+        {
+          "tag": "replacement",
+          "value": "https://ns1.local.domain/admin"
+        }
+      ]
+    },
+    "ns2-redirect": {
+      "type": "redirectRegex",
+      "permanent": true,
+      "rules": [
+        {
+          "tag": "regex",
+          "value": "^https://ns2.local.domain/?$"
+        },
+        {
+          "tag": "replacement",
+          "value": "https://ns2.local.domain/admin"
+        }
+      ]
     }
   },
   "gateway": "192.168.1.1",

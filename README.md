@@ -20,10 +20,20 @@ Good sources for blocklists can be found here:
 
 ## How to use
 
-First edit config.json to match the infrastucture and environment.\
+Save a copy of the configuration file to a local file which can be\
+used as a master for all deployments. Edit config.json to match the\
+infrastucture and environment.\
 Note: the same config.json should be used for all install commands.\
 \
+The file can be downloaded from:\
+\
+`https://raw.githubusercontent.com/anteln/tnc-setup/refs/heads/master/config.json`
+\
+Next run the corresponding commands for the services.\
+\
 `apt update; apt install curl -y; curl https://raw.githubusercontent.com/anteln/tnc-setup/refs/heads/master/init.sh -o init.sh; chmod 755 init.sh; ./init.sh; cd tnc-setup`\
+\
+`nano config.json`\
 \
 `./pihole_install.sh ns-1`\
 `./pihole_install.sh ns-2`\

@@ -3,6 +3,8 @@ import argparse
 
 import jinja2
 
+caserver = { "prod": "https://acme-v02.api.letsencrypt.org/directory", "test": "https://acme-staging-v02.api.letsencrypt.org/directory" }
+
 def generate_config():
   config = { "routers": [], "services": [], "middlewares": [] }
   for name, values in data["hosts"].items():
@@ -10,10 +12,16 @@ def generate_config():
       protocol = data["services"][values["config"]]["protocol"]
       port = data["services"][values["config"]]["port"]
       config["routers"].append({ "name": values["alias"], "domain": data["domain"], "middlewares": data["routers"][values["config"]] })
-      config["services"].append({ "name": values["alias"], "url": "{}://{}.{}:{}".format(protocol, name, data["domain"], port)})
+      if protocol == "http" and port == 80 or protocol == "https" and port == 443:
+        config["services"].append({ "name": values["alias"], "url": "{}://{}".format(protocol, values["address"])})
+      else:
+        config["services"].append({ "name": values["alias"], "url": "{}://{}:{}".format(protocol, values["address"], port)})
 
   for name, values in data["middlewares"].items():
-    config["middlewares"].append({ "name": name, "type": values["type"], "tag": values["tag"], "value": values["value"], "permanent": values["permanent"] })
+    rules = []
+    for rule in values["rules"]:
+      rules.append({ "tag": rule["tag"], "value": rule["value"] })
+    config["middlewares"].append({ "name": name, "type": values["type"], "rules": rules, "permanent": values["permanent"] })
 
   env = jinja2.Environment(loader=jinja2.PackageLoader("traefik_config", "templates"))
   output = env.get_template("config.yml.j2").render(config) + "\n"
@@ -33,8 +41,13 @@ def generate_compose():
     composefile.write(contents)
 
 def generate_traefik():
+  config = "test"
+  if data["config"]["test"] and data["config"]["prod"]: pass
+  if data["config"]["test"] and not data["config"]["prod"]: pass
+  if not data["config"]["test"] and data["config"]["prod"]: config = "prod"
+  if not data["config"]["test"] and not data["config"]["prod"]: pass
   with open("./opt/stacks/traefik/data/traefik.yml", "r") as traefikfile:
-    contents = traefikfile.read().replace("YOUREMAIL", data["email"])
+    contents = traefikfile.read().replace("YOUREMAIL", data["email"]).replace("CASERVER", caserver[config])
   with open("./opt/stacks/traefik/data/traefik.yml", "w") as traefikfile:
     traefikfile.write(contents)
 
