@@ -3,7 +3,7 @@ import argparse
 
 def generate_compose():
   with open("./opt/stacks/openremote/compose.yaml", "r") as composefile:
-    contents = composefile.read().replace("HOSTNAME", data["hosts"][args.host]["address"]).replace("SSL_PORT", "443").replace("PASSWORD", "calvin")
+    contents = composefile.read().replace("CFG_HOSTNAME", data["hosts"][args.host]["address"]).replace("CFG_PASSWORD", "calvin")
   with open("./opt/stacks/openremote/compose.yaml", "w") as composefile:
     composefile.write(contents)
 
