@@ -9,8 +9,14 @@ def generate_config():
   config = { "routers": [], "services": [], "middlewares": [] }
   for name, values in data["hosts"].items():
     if "config" in values.keys():
-      protocol = data["services"][values["config"]]["protocol"]
-      port = data["services"][values["config"]]["port"]
+      protocol = "https"
+      port = 443
+      if values["config"] in data["services"].keys():
+        protocol = data["services"][values["config"]]["protocol"]
+        port = data["services"][values["config"]]["port"]
+      else:
+        protocol = data["services"]["normal"]["protocol"]
+        port = data["services"]["normal"]["port"]
       config["routers"].append({ "name": values["alias"], "domain": data["domain"], "middlewares": data["routers"][values["config"]] })
       if protocol == "http" and port == 80 or protocol == "https" and port == 443:
         config["services"].append({ "name": values["alias"], "url": "{}://{}".format(protocol, values["address"])})
