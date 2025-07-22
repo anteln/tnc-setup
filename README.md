@@ -28,7 +28,7 @@ Note: the same config.json should be used for all install commands.\
 \
 The file can be downloaded from:\
 \
-`https://raw.githubusercontent.com/anteln/tnc-setup/refs/heads/master/config.json`
+`https://raw.githubusercontent.com/anteln/tnc-setup/refs/heads/master/config.json`\
 \
 Next execute the commands for setting up and starting the services.\
 Note: Make sure the host has an internet connection before this.\
@@ -37,7 +37,7 @@ Note: Make sure the host has an internet connection before this.\
 \
 `nano config.json`\
 \
-The order of deployment is according to the command list below:\
+The recommended order of deployment is according to the command list below:\
 \
 `./pihole_install.sh`\
 `./nebula_install.sh`\
@@ -49,7 +49,12 @@ hostname or without. If used without the hostname parameter (which\
 is the recommended way) the script will retrieve the current\
 hostname instead.\
 \
-In order to only update the pihole configuration use below commands.\
+The recommended virtual hosts can be found in the configuration file,\
+but as a short summary:\
+\
+ns-1, ns-2, nebula-1, traefik-1 and or-1\
+\
+In order to only update the pihole configuration use the commands below.\
 \
 `python3 -m venv venv`\
 `venv/bin/pip install pihole6api`\
